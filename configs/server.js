@@ -5,8 +5,10 @@ import cors from "cors";
 import morgan from "morgan";
 import express from "express";
 import { connectionDB } from "./mongo.js";
+import authRoutes from "../src/Auth/auth.routes.js"
 
 const middlewares = (app) => {
+    app.use(express.urlencoded({extended:false}));
     app.use(express.json());
     app.use(helmet());
     app.use(cors());
@@ -14,6 +16,10 @@ const middlewares = (app) => {
 
 };
 
+const routes = (app) =>{
+    app.use("/adoptionSystem/v1/auth", authRoutes);
+
+}
 const connectionMongo = async() =>{
     try{
         await connectionDB();
@@ -28,6 +34,7 @@ export const initServer = () => {
     try{
         middlewares(app);
         connectionMongo();
+        routes(app);
         app.listen(process.env.PORT);
         const elapsedTime = Date.now() - timeInit;
         console.log(`Server running on port ${process.env.PORT} ${elapsedTime}ms`);
