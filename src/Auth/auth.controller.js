@@ -27,14 +27,19 @@ export const register = async(req,res) =>{
 }
 
 export const login = async(req,res) =>{
-    const {email, password} = req.body
+    const {email, userName, password} = req.body
     try{
-        const user = await User.findOne({ email });
+        const user = await User.findOne({ 
+        $or: [
+            {email : email},
+            {userName, userName}
+        ]
+        })
 
         if(!user){
             return res.status(400).json({
                 message: "Credenciales inválidas",
-                error: "correo electrónico"
+                error: "no existe el usuario o crreo electrónico"
             })
         };
 
