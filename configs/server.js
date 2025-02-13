@@ -7,6 +7,7 @@ import express from "express";
 import { connectionDB } from "./mongo.js";
 import authRoutes from "../src/Auth/auth.routes.js"
 import userRoutes from "../src/user/user.routes.js"
+import categoryRoutes from "../src/category/category.routes.js"
 
 const middlewares = (app) => {
     app.use(express.urlencoded({extended:false}));
@@ -19,7 +20,8 @@ const middlewares = (app) => {
 
 const routes = (app) =>{
     app.use("/salesManager/v1/auth", authRoutes);
-    app.use("/salesManager/v1/user", userRoutes)
+    app.use("/salesManager/v1/user", userRoutes);
+    app.use("/salesManager/v1/category", categoryRoutes);
 }
 const connectionMongo = async() =>{
     try{
