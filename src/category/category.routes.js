@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { registerBrand , addProductsToBrands } from "./category.controller.js";
+import { registerCategory , addProductsToBrands } from "./category.controller.js";
 import { registerBrandValidator ,addProductToCategoryValidator} from "../middlewares/category-validators.js";
 
 const router = Router();
@@ -7,7 +7,7 @@ const router = Router();
 router.post(
     "/registerBrand/",
     registerBrandValidator,
-    registerBrand
+    registerCategory
 )
 
 router.post(
