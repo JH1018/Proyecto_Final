@@ -44,3 +44,61 @@ export const addProductsToBrands = async(req,res) =>{
         })
     }
 }
+
+export const deleteCategory = async (req, res) => {
+    try {
+
+        const { uid } = req.params;
+        const category = await Category.findById(uid);
+        const productIds = category.products;
+
+        if (!category) {
+            return res.status(404).json({
+                message: "Category not found" 
+            });
+        }
+
+        await Category.findByIdAndUpdate(uid, { status: false, products: [] }, { new: true });
+        await Product.updateMany({ category: uid },{ category: null });
+
+        return res.status(200).json({ 
+            message: "Category disabled and removed from products" 
+        });
+
+    } catch (error) {
+        return res.status(500).json({
+            message: "Delete category failed",
+            error: error.message
+        });
+    }
+};
+
+
+export const updateCategory = async(req,res) => {
+    try{
+        const { uid } = req.params;
+        const data = req.body
+
+        const category = await Category.findById(uid)
+
+        if(!category){
+            return res.status(404).json({
+                message: "The category non exist",
+                error: error.message
+            }); 
+        }
+
+        const updatedCategory = await Category.findByIdAndUpdate(uid, data, {new: true})
+        
+        return res.status(200).json({ 
+            message: "Category updated",
+            updatedCategory
+        });
+
+    }catch(error){
+        return res.status(500).json({
+            message: "Update category failed",
+            error: error.message
+        });
+    }
+}
