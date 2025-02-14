@@ -3,19 +3,19 @@ import { Schema , model } from "mongoose"
 const productSchema = new Schema({
     name:{
         type: String,
-        required: true
+        required: [true, "Name is reqired"]
     },
     description:{
         type: String,
-        required: true
+        required: [true, "Description is reqired"]
     },
     price:{
         type: Number,
-        required: true
+        required: [true, "Price is reqired"]
     },
     stock:{
         type: Number,
-        required: true
+        required: [true, "Stock is reqired"]
     },
     category:{
         type: Schema.Types.ObjectId,
@@ -24,7 +24,7 @@ const productSchema = new Schema({
     },
     brand:{
         type: String,
-        required: true
+        required: [true, "Brand is reqired"]
     },
     status:{
         type: Boolean,
