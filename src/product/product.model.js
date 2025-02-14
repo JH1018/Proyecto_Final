@@ -3,28 +3,28 @@ import { Schema , model } from "mongoose"
 const productSchema = new Schema({
     name:{
         type: String,
-        required: true
+        required: [true, "Name is required"]
     },
     description:{
         type: String,
-        required: true
+        required: [true, "Description is required"]
     },
     price:{
         type: Number,
-        required: true
+        required: [true, "Price is required"]
     },
     stock:{
         type: Number,
-        required: true
+        required: [true, "Stock is required"]
     },
     category:{
         type: Schema.Types.ObjectId,
         ref: "Category",
-        default: null
+        default: null,
     },
     brand:{
         type: String,
-        required: true
+        required: [true, "Brand is required"]
     },
     status:{
         type: Boolean,
