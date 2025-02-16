@@ -5,7 +5,7 @@ import { registerBrandValidator ,addProductToCategoryValidator , deleteCategoryV
 const router = Router();
 
 router.post(
-    "/registerBrand/",
+    "/registerCategory/",
     registerBrandValidator,
     registerCategory
 )
