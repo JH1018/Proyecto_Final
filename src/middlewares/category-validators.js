@@ -4,7 +4,7 @@ import { productExist , categoryExist } from "../helpers/db-validators.js";
 
 export const registerBrandValidator = [
     body("name").not().isEmpty().withMessage("Name is required"),
-    body("description").notEmpty().withMessage("Description is required"),
+    body("description").not().isEmpty().withMessage("Description is required"),
     validationsFields
 ];
 
