@@ -9,6 +9,7 @@ import authRoutes from "../src/Auth/auth.routes.js"
 import userRoutes from "../src/user/user.routes.js"
 import categoryRoutes from "../src/category/category.routes.js"
 import productRoutes from "../src/product/product.routes.js"
+import { userSeeder } from "../src/seeders/user.seeder.js";
 
 const middlewares = (app) => {
     app.use(express.urlencoded({extended:false}));
@@ -41,6 +42,7 @@ export const initServer = () => {
         connectionMongo();
         routes(app);
         app.listen(process.env.PORT);
+        userSeeder();
         const elapsedTime = Date.now() - timeInit;
         console.log(`Server running on port ${process.env.PORT} ${elapsedTime}ms`);
     }catch(error){
