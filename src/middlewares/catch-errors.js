@@ -1,12 +1,13 @@
 export const catchErrors = (err, req, res, next) => {
-    if (err.status === 400 || err.errors) {
+    const statusCode = err.status || 500;
+    if (statusCode === 400 || err.errors) {
         return res.status(400).json({
             success: false,
-            errors: err.errors
+            errors: err.errors || []
         });
     }
-    return res.status(500).json({
+    return res.status(statusCode).json({
         success: false,
-        message: err.message
+        message: err.message || "Internal Server Error"
     });
-}
+};
