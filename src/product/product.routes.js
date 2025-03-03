@@ -29,7 +29,7 @@ router.patch(
 )
 
 router.get(
-    "/findProduct/",
+    "/findProduct/:uid",
     findProductValidator,
     findProduct
 )

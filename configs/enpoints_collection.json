@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "63f3e992-6749-4bbe-9d06-3bf7180e9de3",
+		"_postman_id": "8725d36b-79e9-4f76-be95-9953778223a9",
 		"name": "Gestor de Ventas",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "38544176"
@@ -153,6 +153,16 @@
 				{
 					"name": "Listar por Rango",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MGZkNmFkYTBmNzI1ZTFhMmY0NTEiLCJpYXQiOjE3NDEwMzg1MzAsImV4cCI6MTc0MTA0MjEzMH0.dsWSSFeQ8KELFL3n9bNXlUQv7r9p0d-xbOT-E80H9cA",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
@@ -502,11 +512,21 @@
 				{
 					"name": "Registrar Producto",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MGZkNmFkYTBmNzI1ZTFhMmY0NTEiLCJpYXQiOjE3NDEwMzM4NzUsImV4cCI6MTc0MTAzNzQ3NX0.jjlxv6e0ZWIhuZPp__o2e485aeN7rLmxuhiFW36ZtD4",
+									"type": "string"
+								}
+							]
+						},
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"name\": \"Queso Rayado\",\r\n    \"description\": \"que en rallas\",\r\n    \"price\": 25.00,\r\n    \"stock\": 5,\r\n    \"brand\": \"Palma\"\r\n}",
+							"raw": "{\r\n    \"name\": \"Queso Rayado\",\r\n    \"description\": \"que en rallas\",\r\n    \"price\": 25.00,\r\n    \"stock\": 5,\r\n    \"brand\": \"Palma\",\r\n    \"category\": \"67b14aec70945fe2dc5ad883\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -528,6 +548,401 @@
 								"v1",
 								"product",
 								"registerProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Productos",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/salesManager/v1/product/listProduct",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"listProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Buscar Producto",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MGZkNmFkYTBmNzI1ZTFhMmY0NTEiLCJpYXQiOjE3NDEwMzM0MzQsImV4cCI6MTc0MTAzNzAzNH0.1374gDTPUkZCj1mwjsLDZOVsvrFPG5uerBJldhVy_dc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/salesManager/v1/product/findProduct/:uid",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"findProduct",
+								":uid"
+							],
+							"variable": [
+								{
+									"key": "uid",
+									"value": "67b14af770945fe2dc5ad885"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Actualizar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MGZkNmFkYTBmNzI1ZTFhMmY0NTEiLCJpYXQiOjE3NDEwMzM0MzQsImV4cCI6MTc0MTAzNzAzNH0.1374gDTPUkZCj1mwjsLDZOVsvrFPG5uerBJldhVy_dc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"name\": \"Queso Rayado\",\r\n    \"description\": \"que en rallas\",\r\n    \"price\": 25.00,\r\n    \"stock\": 5,\r\n    \"brand\": \"Palma\",\r\n    \"category\": \"67b14aec70945fe2dc5ad883\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/salesManager/v1/product/updateProduct/:uid",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"updateProduct",
+								":uid"
+							],
+							"variable": [
+								{
+									"key": "uid",
+									"value": "67b14af770945fe2dc5ad885"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Producto",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MGZkNmFkYTBmNzI1ZTFhMmY0NTEiLCJpYXQiOjE3NDEwMzM0MzQsImV4cCI6MTc0MTAzNzAzNH0.1374gDTPUkZCj1mwjsLDZOVsvrFPG5uerBJldhVy_dc",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/salesManager/v1/product/deleteProduct/:uid",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"deleteProduct",
+								":uid"
+							],
+							"variable": [
+								{
+									"key": "uid",
+									"value": "67b14af770945fe2dc5ad885"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Carrito",
+			"item": [
+				{
+					"name": "Crear Carrito",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MGZkNmFkYTBmNzI1ZTFhMmY0NTEiLCJpYXQiOjE3NDEwMzkzNTUsImV4cCI6MTc0MTA0Mjk1NX0.NZFQTaIeCQO_YOprftoI-GsngckXCF-ZQLz_wxj5QwU",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"products\": [1926],\r\n    \"user\": \"67c60fd6ada0f725e1a2f451\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/salesManager/v1/buyCart/registerBuyCart",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"salesManager",
+								"v1",
+								"buyCart",
+								"registerBuyCart"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Pagar Carrito",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MGZkNmFkYTBmNzI1ZTFhMmY0NTEiLCJpYXQiOjE3NDEwMzg1MzAsImV4cCI6MTc0MTA0MjEzMH0.dsWSSFeQ8KELFL3n9bNXlUQv7r9p0d-xbOT-E80H9cA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/salesManager/v1/buyCart/payCart/:uid",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"salesManager",
+								"v1",
+								"buyCart",
+								"payCart",
+								":uid"
+							],
+							"variable": [
+								{
+									"key": "uid",
+									"value": "67c6129213f319e960c5e317"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Editar Carrito",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MGZkNmFkYTBmNzI1ZTFhMmY0NTEiLCJpYXQiOjE3NDEwNDIxODYsImV4cCI6MTc0MTA0NTc4Nn0.nb110rcqJqSMfHLMDql13Jk-Or6FtxlZHEH0IMP0EM8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deleteProduct\": [1926],\r\n    \"addproduct\": [1926]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/salesManager/v1/buyCart/editCart/:uid",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"salesManager",
+								"v1",
+								"buyCart",
+								"editCart",
+								":uid"
+							],
+							"variable": [
+								{
+									"key": "uid",
+									"value": "67c62702167fa3fddd030aff"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Eliminar Carrito",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M2MGZkNmFkYTBmNzI1ZTFhMmY0NTEiLCJpYXQiOjE3NDEwNDIxODYsImV4cCI6MTc0MTA0NTc4Nn0.nb110rcqJqSMfHLMDql13Jk-Or6FtxlZHEH0IMP0EM8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"deleteProduct\": [1926],\r\n    \"addproduct\": [1926]\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/salesManager/v1/buyCart/deleteCart/:uid",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"salesManager",
+								"v1",
+								"buyCart",
+								"deleteCart",
+								":uid"
+							],
+							"variable": [
+								{
+									"key": "uid",
+									"value": "67c62702167fa3fddd030aff"
+								}
 							]
 						}
 					},

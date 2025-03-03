@@ -20,7 +20,6 @@ export const registerProductValidator = [
 export const findProductValidator = [
     validateJWT,
     hasRoles("ADMIN_ROLE"),
-    body("name").notEmpty().withMessage("Name is required"),
     validationsFields,
     catchErrors
 ]
