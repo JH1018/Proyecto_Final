@@ -56,6 +56,26 @@ export const getUsers = async (req, res) => {
     }
 }
 
+export const listHistory = async (req,res) =>{
+    try{
+        const {uid} = req.params
+
+        const user = await User.findById(uid).populate("history")
+
+        return res.status(200).json({
+            success: true,
+            Hitstorial: user
+        })
+
+    }catch(error){
+        return res.status(500).json({
+            success: false,
+            message: "Error al ver el historial",
+            error: error.message
+        }) 
+    }
+}
+
 export const deleteUser = async (req, res) => {
     try{
         const { uid } = req.params
