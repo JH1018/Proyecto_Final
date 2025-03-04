@@ -21,7 +21,7 @@ export const validateJWT = async (req, res, next) => {
         if(!user){
             return res.status(400).json({
                 success: false,
-                message: "The user doesn't exist in te databse"
+                message: "The user doesn't exist in the databse"
             }) 
         }
 
