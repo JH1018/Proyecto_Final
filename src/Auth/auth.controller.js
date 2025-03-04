@@ -32,7 +32,7 @@ export const login = async(req,res) =>{
         const user = await User.findOne({ 
         $or: [
             {email : email},
-            {userName, userName}
+            {userName: userName}
         ]
         })
 

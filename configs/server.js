@@ -8,6 +8,9 @@ import { connectionDB } from "./mongo.js";
 import authRoutes from "../src/Auth/auth.routes.js"
 import userRoutes from "../src/user/user.routes.js"
 import categoryRoutes from "../src/category/category.routes.js"
+import productRoutes from "../src/product/product.routes.js"
+import buyCartRoutes from "../src/buyCart/buyCart.routes.js"
+import { userSeeder } from "../src/seeders/user.seeder.js";
 
 const middlewares = (app) => {
     app.use(express.urlencoded({extended:false}));
@@ -22,6 +25,8 @@ const routes = (app) =>{
     app.use("/salesManager/v1/auth", authRoutes);
     app.use("/salesManager/v1/user", userRoutes);
     app.use("/salesManager/v1/category", categoryRoutes);
+    app.use("/salesManager/v1/product", productRoutes);
+    app.use("/salesManager/v1/buyCart", buyCartRoutes);
 }
 const connectionMongo = async() =>{
     try{
@@ -39,6 +44,7 @@ export const initServer = () => {
         connectionMongo();
         routes(app);
         app.listen(process.env.PORT);
+        userSeeder();
         const elapsedTime = Date.now() - timeInit;
         console.log(`Server running on port ${process.env.PORT} ${elapsedTime}ms`);
     }catch(error){

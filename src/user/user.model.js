@@ -40,6 +40,10 @@ const userSchema = Schema({
         enum: ["ADMIN_ROLE", "CLIENT_ROLE"],
         default: "CLIENT_ROLE"
     },
+    history:[{
+        type: Schema.Types.ObjectId,
+        ref: "BuyCart"
+    }],
     status: {
         type: Boolean,
         default: true,
