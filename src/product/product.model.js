@@ -42,6 +42,10 @@
         code:{
             type: Number
         },
+        popularity:{
+            type: Number,
+            default: 0
+        },
         status:{
             type: Boolean,
             default: true

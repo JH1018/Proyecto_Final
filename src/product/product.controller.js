@@ -75,6 +75,23 @@ export const findProduct = async (req, res) => {
     }
 };
 
+export const popularityProduct = async (req, res) => {
+    try {
+        const products = await Product.find({}, { name: 1, popularity: 1, _id: 0 })                                     .sort({ popularity: -1 });
+
+        return res.status(200).json({
+            success: true,
+            products
+        });
+    } catch (error) {
+        return res.status(500).json({
+            message: "Failed to list products",
+            error: error.message
+        });
+    }
+};
+
+
 export const updateProduct = async(req,res) =>{
     try{
 

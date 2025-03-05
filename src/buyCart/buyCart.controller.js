@@ -38,7 +38,7 @@ export const payCart = async(req,res) =>{
 
         for (let i = 0; i < cart.products.length; i++) {
             const restStock = await Product.findOne({code: cart.products[i]})
-            await Product.findByIdAndUpdate(restStock.id,{$inc: {stock: -1}}, {new: true})
+            await Product.findByIdAndUpdate(restStock.id,{$inc: {stock: -1, popularity: 1}}, {new: true})
         }
 
         await BuyCart.findByIdAndUpdate(uid,{status: "PAYED"})

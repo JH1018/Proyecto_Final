@@ -575,6 +575,53 @@
 					"response": []
 				},
 				{
+					"name": "Popularidad del producto",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3ODM0OGI1YjE2YjgwYWEyMDRhMjMiLCJpYXQiOjE3NDExMjg1MjMsImV4cCI6MTc0MTEzMjEyM30.QVVMMLB6RATdQshBuQLSTG15A3CldJlQFO1fFJHKFsA",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://127.0.0.1:3005/salesManager/v1/product/popularityProduct",
+							"protocol": "http",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "3005",
+							"path": [
+								"salesManager",
+								"v1",
+								"product",
+								"popularityProduct"
+							]
+						}
+					},
+					"response": []
+				},
+				{
 					"name": "Actualizar Producto",
 					"request": {
 						"auth": {
@@ -732,7 +779,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"productUid\": \"67c789d4501ddaffb94ebdbb\"\r\n}",
+							"raw": "{\r\n    \"productUid\": \"67c78980501ddaffb94ebda3\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -759,7 +806,7 @@
 							"variable": [
 								{
 									"key": "uid",
-									"value": "67c78882501ddaffb94ebd9b"
+									"value": "67c78871501ddaffb94ebd95"
 								}
 							]
 						}
@@ -841,7 +888,7 @@
 							"variable": [
 								{
 									"key": "uid",
-									"value": "67ad5ce1e7ad839253f0468c"
+									"value": "67c78871501ddaffb94ebd95"
 								}
 							]
 						}
@@ -905,7 +952,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3ODM0OGI1YjE2YjgwYWEyMDRhMjMiLCJpYXQiOjE3NDExMjg1MjMsImV4cCI6MTc0MTEzMjEyM30.QVVMMLB6RATdQshBuQLSTG15A3CldJlQFO1fFJHKFsA",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1aWQiOiI2N2M3ODM0OGI1YjE2YjgwYWEyMDRhMjMiLCJpYXQiOjE3NDEyMDk5ODgsImV4cCI6MTc0MTIxMzU4OH0.59ga406zNG6ZF2UnvkJEDG5XBM1g2zkQRVBetNYnr3I",
 									"type": "string"
 								}
 							]
