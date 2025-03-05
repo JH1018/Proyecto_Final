@@ -58,8 +58,13 @@ export const deleteCategory = async (req, res) => {
             });
         }
 
+        const categoryDefault = await Category.findOne({name: "Default"})
+
         await Category.findByIdAndUpdate(uid, { status: false, products: [] }, { new: true });
-        await Product.updateMany({ category: uid },{ category: null });
+        await Product.updateMany({ category: uid },{ category: categoryDefault._id });
+        await Category.findByIdAndUpdate(categoryDefault._id,{$push: {products: {$each: productIds}}}, { new: true });
+
+
 
         return res.status(200).json({ 
             message: "Category disabled and removed from products" 
