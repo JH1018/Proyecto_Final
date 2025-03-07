@@ -4,6 +4,7 @@
 Para poder iniciar el proyecto hay que abrir la consola dentro la carpeta del proyecto y colocar el siguiente comando para poder instalar las dependencias:
 
 - npm i
+
 Este comando intstalará las dependencias requeridas, luego para ejecutar el proyecto se debe ingresar el siguiente comando:
 
 - npm run dev
