@@ -77,31 +77,67 @@ export const listHistory = async (req,res) =>{
 }
 
 export const deleteUser = async (req, res) => {
-    try{
-        const { uid } = req.params
-        
-        if(uid.role === "ADMIN_ROLE"){
-            res.status(400).json({
+    try {
+        const { uid } = req.params; 
+        const { password, key } = req.body;
+
+        if (uid !== key) {
+            return res.status(400).json({
                 success: false,
-                msg: 'No se puede eliminar a administradores'
+                message: 'No tienes permiso para eliminar este usuario',
             });
         }
 
-        const user = await User.findByIdAndUpdate(uid, {status: false}, {new: true})
+        const user1 = await User.findById(uid);
+        if (!user1) {
+            return res.status(404).json({
+                success: false,
+                message: 'Usuario no encontrado',
+            });
+        }
+
+        const requester = await User.findById(key);
+        if (requester.role === "CLIENT_ROLE") {
+            if (user1.role === "ADMIN_ROLE") {
+                return res.status(400).json({
+                    success: false,
+                    message: 'Los clientes no pueden eliminar a administradores',
+                });
+            }
+        }
+
+        if (requester.role === "ADMIN_ROLE" && user1.role === "ADMIN_ROLE" && uid !== key) {
+            return res.status(400).json({
+                success: false,
+                message: 'Los administradores no pueden eliminar a otros administradores',
+            });
+        }
+
+        const oldPass = await verify(user1.password, password);
+
+        if (!oldPass) {
+            return res.status(400).json({
+                success: false,
+                message: "La contraseña no coincide",
+            });
+        }
+
+        const user = await User.findByIdAndUpdate(uid, { status: false }, { new: true });
 
         return res.status(200).json({
             success: true,
             message: "Usuario eliminado",
-            user
-        })
-    }catch(err){
+            user,
+        });
+    } catch (err) {
         return res.status(500).json({
             success: false,
             message: "Error al eliminar el usuario",
-            error: err.message
-        })
+            error: err.message,
+        });
     }
-}
+};
+
 
 export const updatePassword = async (req, res) => {
     try{
@@ -140,30 +176,55 @@ export const updatePassword = async (req, res) => {
 export const updateUser = async (req, res) => {
     try {
         const { uid } = req.params;
-        const  data  = req.body;
+        const { key } = req.body;
+        const data = req.body;
 
-        if(uid.role === "ADMIN_ROLE"){
-            res.status(400).json({
+        if (uid !== key) {
+            return res.status(400).json({
                 success: false,
-                msg: 'No se puede actualizar a administradores'
+                msg: 'No tienes permiso para actualizar este perfil',
+            });
+        }
+
+        const userToUpdate = await User.findById(key);
+
+        if (!userToUpdate) {
+            return res.status(404).json({
+                success: false,
+                msg: 'Usuario no encontrado',
+            });
+        }
+
+        if (userToUpdate.role === "CLIENT_ROLE" && uid === key) {
+            return res.status(400).json({
+                success: false,
+                msg: 'Los clientes no pueden actualizar los perfiles de administradores',
+            });
+        }
+
+        if (userToUpdate.role === "ADMIN_ROLE" && uid !== key) {
+            return res.status(400).json({
+                success: false,
+                msg: 'No se puede actualizar el perfil de un administrador',
             });
         }
 
         const user = await User.findByIdAndUpdate(uid, data, { new: true });
 
-        res.status(200).json({
+        return res.status(200).json({
             success: true,
-            msg: 'Usuario Actualizado',
+            msg: 'Usuario actualizado',
             user,
         });
     } catch (err) {
-        res.status(500).json({
+        return res.status(500).json({
             success: false,
             msg: 'Error al actualizar usuario',
-            error: err.message
+            error: err.message,
         });
     }
-}
+};
+
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
