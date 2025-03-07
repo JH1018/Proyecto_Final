@@ -80,6 +80,13 @@ export const deleteUser = async (req, res) => {
     try{
         const { uid } = req.params
         
+        if(uid.role === "ADMIN_ROLE"){
+            res.status(400).json({
+                success: false,
+                msg: 'No se puede eliminar a administradores'
+            });
+        }
+
         const user = await User.findByIdAndUpdate(uid, {status: false}, {new: true})
 
         return res.status(200).json({
@@ -134,6 +141,13 @@ export const updateUser = async (req, res) => {
     try {
         const { uid } = req.params;
         const  data  = req.body;
+
+        if(uid.role === "ADMIN_ROLE"){
+            res.status(400).json({
+                success: false,
+                msg: 'No se puede actualizar a administradores'
+            });
+        }
 
         const user = await User.findByIdAndUpdate(uid, data, { new: true });
 
